@@ -6,6 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Run code analysis
+        continue-on-error: true # To make sure that SARIF upload gets called
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
