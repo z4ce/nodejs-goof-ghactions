@@ -1,4 +1,4 @@
-name: Synk
+name: Synk-Monitor
 on:
   push:
     branches:

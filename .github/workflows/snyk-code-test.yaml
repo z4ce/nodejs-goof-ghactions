@@ -1,16 +1,13 @@
-name: Synk
-on:
-  push:
-    branches:
-      - main
+name: Synk-Code-Test
+on: push
 jobs:
   security-monitor:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Run Snyk to monitor vulnerabilities
+      - name: Run code analysis
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          command: monitor
+          command: code test
