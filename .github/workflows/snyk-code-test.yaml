@@ -6,7 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Run code analysis
-        continue-on-error: true # To make sure that SARIF upload gets called
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
@@ -14,6 +13,7 @@ jobs:
           command: code test
           args: --sarif-file-output=snyk.sarif
       - name: Upload result to GitHub Code Scanning
+        if: always()
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: snyk.sarif
